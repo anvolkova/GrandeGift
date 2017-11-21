@@ -1,0 +1,49 @@
+.navbar {
+    margin-bottom: 50px;
+    border-radius: 0;
+    background-color: #F8F8FF;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.card-footer {  
+  background-color: #F8F8FF;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card{
+    border: 0;
+}
+.card-header {    
+  background-color: #F8F8FF;
+  border-bottom: 0;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+a {
+    color: #0000e6;
+}
+
+.btn-primary:hover{
+    background-color: #4d4dff;
+    border-color: #4d4dff;
+}
+.btn-primary{
+    background-color: #3333ff;
+    border-color: #3333ff;
+}
+
+.full-width {
+    width: 100%;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon{
+     background-color: #e6e6ff; 
+}

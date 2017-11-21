@@ -1,0 +1,39 @@
+﻿@model CategoryUpdateViewModel
+
+<div style="width: 30%">
+    <h5>Update Category</h5>
+
+    <form asp-controller="Category" asp-action="Update" method="post" enctype="multipart/form-data">
+
+        <div>
+            <input asp-for="CategoryId" hidden />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name">Category name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Details">Category details</label>
+            <input asp-for="Details" class="form-control" />
+        </div>
+
+        @if (Model.Picture != null)
+        {
+            <div class="form-group">
+                <label asp-for="Picture">Category picture</label>
+                <input asp-for="Picture" class="form-control" readonly />
+            </div>
+        }      
+            <div class="form-group">
+                <label asp-for="Picture">Category picture</label>
+                <input type="file" name="file" class="form-control-file" />
+            </div>
+        
+
+        <div>
+            <input type="submit" class="btn btn-primary" value="Save changes" />
+        </div>
+    </form>
+</div>

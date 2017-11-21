@@ -1,0 +1,39 @@
+﻿@model OrderPlacedDetailsViewModel
+
+<table class="full-width">
+    <tr>
+        <th>Product name</th>
+        <th>Unit price</th>
+        <th>Qty</th>
+    </tr>
+    @foreach (var item in Model.OrderLines)
+    {
+        <tr>
+            <td>
+                @item.HamperName
+            </td>
+            <td>
+                &#x24;@item.UnitPrice AUD
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+        </tr>
+    }
+</table>
+
+<h6 class="mt-2 mb-2">Total: &#x24;@Model.TotalPrice</h6>
+
+<p class="mt-2 mb-2">Order was shipped to:</p>
+<div class="col-sm-4">
+    <div class="text-sm-left">
+        <h6>@Model.Address.Name</h6>
+        <address>
+            @Model.Address.Street <br />
+            @Model.Address.City, @Model.Address.Region, @Model.Address.PostCode <br />
+            @Model.Address.Country
+        </address>
+    </div>
+</div>
+
+<p class="mt-2 mb-2">@Html.ActionLink("Return to order list", "Placed", "Order")</p>

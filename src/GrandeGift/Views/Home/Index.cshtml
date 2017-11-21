@@ -1,0 +1,85 @@
+﻿@model HomeIndexViewModel
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="container mb-2">
+        @Html.ActionLink("Add Category", "Create", "Category",
+            null, new Dictionary<string, object> { { "class", "btn btn-primary" } })
+    </div>
+}
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Categories)
+        {
+            <div class="col-sm-4 mt-2">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h6 class="card-title">@Html.ActionLink(item.Name, "Details", "Category", new { id = item.CategoryId })</h6>
+                    </div>
+                    <div class="card-body">
+                        <a href="/Category/Details/@item.CategoryId">
+                            <img src="~/uploads/@item.Picture" class="card-img-bottom img-fluid" style="width:100%" alt="@item.Picture">
+                        </a>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="text-center mb-2">
+                            @Html.ActionLink("Update", "Update", "Category", new { id = item.CategoryId }, new Dictionary<string, object> { { "class", "btn btn-primary" } })
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-7 mt-5 mb-3">
+        <div id="carouselSlides" class="carousel slide card" data-ride="carousel">
+            <div class="card-header text-center">
+                Customer Testimonials
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="card-body" style="min-height: 170px;">
+                        <p class="card-text">
+                            Great experience for a first time user, easy to use, great delivery options along with great hamper variety.
+                            I especially liked the opportunity to swap some items within the hamper I had ordered. Satisfied customer, I will definitely use Grande Gift again.
+                        </p>
+                        <p><b>Jenny - NSW, Australia - Nov 2017</b></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card-body" style="min-height: 170px;">
+                        <p class="card-text">
+                            I wanted to say thank you so much for delivering my gift to my partner in-time for his birthday today.
+                            Not only is the package beautifully presented, but it looks delicious and he was pleasantly surprised. Many thanks - I will certainly be recommending your services to others.
+                        </p>
+                        <p><b>Nicol - NSW, Australia - Nov 2017</b></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card-body" style="min-height: 170px;">
+                        <p class="card-text">
+                            Excellent service very impressed
+                        </p>
+                        <p><b>Brenda - QLD, Australia - Nov 2017</b></p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselSlides" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselSlides" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-5 mt-5 mb-3">
+        <div class="card-header text-center">We accept payments</div>
+        <img class="img-fluid" src="~/images/Payment.png" />
+    </div>
+</div>
+

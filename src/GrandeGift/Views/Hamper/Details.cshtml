@@ -1,0 +1,32 @@
+﻿@model HamperDetailsViewModel
+
+<div class="row">
+    <div class="col-sm-6">
+        <img src="~/uploads/@Model.Picture" class="img-fluid" style="width:100%" alt="@Model.Picture">
+    </div>
+
+    <div class="col-sm-6">
+        <div class="container text-center">
+            <h4>@Model.Name</h4>
+        </div>
+        <div class="container">
+            <p><b>Price: &#x24;@Model.Price</b></p>
+        </div>
+        <div class="container">
+            <p>Hamper includes:</p>
+            <ul>
+                @foreach (string line in Model.Details
+                .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    <li>@line</li>
+                }
+            </ul>
+        </div>
+        @Html.ActionLink("Buy", "Cart", "Order", new { hamperId = Model.HamperId },
+            new Dictionary<string, object> { { "class", "btn btn-primary mb-2" } })
+    </div>
+</div>
+
+
+
+

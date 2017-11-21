@@ -1,0 +1,59 @@
+﻿@model OrderCartViewModel
+
+<h4 class="mb-2">Shopping Cart</h4>
+
+@if (Model.OrderLines.Any())
+{
+    <form asp-controller="Order" asp-action="Cart" method="post">
+
+        <table class="mt-2 mb-2 full-width">
+            <tr>
+                <th>Product name</th>
+                <th>Unit price</th>
+                <th>Qty</th>
+                <th>Subtotal</th>
+                <th>&nbsp;</th>
+            </tr>
+            @foreach (var item in Model.OrderLines)
+            {
+                <tr>
+                    <td>
+                        @item.HamperName
+                    </td>
+                    <td>
+                        &#x24;@item.UnitPrice
+                </td>
+                <td>
+                    <input name="@item.OrderLineId" value="@item.Quantity" class="form-control-sm" style="width:7ch;" />
+                </td>
+                <td class="text-center">
+                    &#x24;@(item.UnitPrice * item.Quantity)
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "RemoveLine", "Order", new { lineId = item.OrderLineId })
+                </td>
+            </tr>
+            }
+        </table>
+        <input type="submit" class="btn btn-light mt-2 mb-2" value="Update QTY" />
+    </form>
+    <h6 class="mt-2 mb-2">
+        Total: &#x24;@Model.TotalPrice
+    </h6>
+    <p class="mt-2 mb-2">Shipping fee &#x24;7.5 for Australia wide is included</p>
+    <div>
+        <a class="btn btn-primary mt-2 mb-2 mr-1" href="/Home/Index">Continue shopping</a>
+        <a class="btn btn-primary mt-2 mb-2" href="/Order/Addresses">Checkout</a>
+    </div>
+}
+else
+{
+    <p class="mt-2 mb-2">Cart is empty</p>
+    <div>
+        <a class="btn btn-primary mt-2 mb-2" href="/Home/Index">Add hamper</a>
+    </div>
+}
+<div>
+    <a class="btn btn-primary mt-2 mb-4" href="/Order/Placed">My placed orders</a>
+</div>
+

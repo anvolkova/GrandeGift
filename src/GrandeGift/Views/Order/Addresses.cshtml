@@ -1,0 +1,33 @@
+﻿@model OrderAddressesViewModel
+
+<h6 class="mb-2">Please choose delivery address.</h6>
+
+@if (Model.Addresses.Any())
+{
+    <div class="row">
+        @foreach (var item in Model.Addresses)
+        {
+            <div class="col-sm-4 mt-2 mb-2">
+                <div class="card">
+                    <h6 class="card-title text-sm-left">@item.Name</h6>
+                    <address>
+                        @item.Street <br />
+                        @item.City, @item.Region, @item.PostCode <br />
+                        @item.Country
+                    </address>
+                    <div class="float-sm-left">
+                        @Html.ActionLink("Select", "Checkout", "Order", new { addressId = item.AddressId })
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+}
+else
+{
+    <h6>You do not have any delivery address. Please create address and then continue your checkout.</h6>
+    <div class="container mt-4 mb-4">
+        <a class="btn btn-primary" href="/Address/Create">Add Delivery Address</a>
+    </div>
+}

@@ -1,0 +1,53 @@
+﻿@model HamperUpdateViewModel
+
+<div style="width: 30%">
+    <h5>Update Hamper</h5>
+
+    <form asp-controller="Hamper" asp-action="Update" method="post" enctype="multipart/form-data">
+        <div>
+            <input asp-for="HamperId" hidden />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name">Hamper name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Details">Hamper details</label>
+            <input asp-for="Details" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price">Hamper price, AUD</label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+
+        @if (Model.Picture != null)
+        {
+            <div class="form-group">
+                <label asp-for="Picture">Hamper picture</label>
+                <input asp-for="Picture" class="form-control" readonly />
+            </div>
+        }
+        @if (Model.Picture == null)
+        {
+            <div class="form-group">
+                <label asp-for="Picture">Hamper picture</label>
+                <input type="file" name="file" class="form-control-file" />
+            </div>
+        }
+
+        <div class="form-check">
+            <label asp-for="Hidden" class="form-check-label">
+                <input asp-for="Hidden" type="checkbox" class="form-check-input">
+                Hidden from customer
+            </label>
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-primary" value="Save changes" />
+            <a class="btn btn-light" href="/Home/Index" role="button">Cancel</a>
+        </div>
+    </form>
+</div>

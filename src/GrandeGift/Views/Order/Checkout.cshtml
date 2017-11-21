@@ -1,0 +1,59 @@
+﻿@model OrderCheckoutViewModel
+
+<h4 class="mb-2">Your order:</h4>
+
+<form asp-controller="Order" asp-action="Checkout" method="post">
+
+    <table class="full-width">
+        <tr>
+            <th>Product name</th>
+            <th>Unit price</th>
+            <th>Qty</th>          
+        </tr>
+        @foreach (var item in Model.OrderLines)
+        {
+            <tr>
+                <td>
+                    @item.HamperName
+                </td>
+                <td>
+                    &#x24;@item.UnitPrice
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                <b>Total</b>
+            </td>
+            <td>
+                <b>&#x24;@Model.TotalPrice</b>
+</td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+
+    <p class="mt-2 mb-2">Delivery address:</p>
+
+    <div class="col-sm-4">
+        <div class="text-sm-left">
+            <div>
+                <input asp-for="AddressId" hidden />
+                <span asp-validation-for="AddressId"></span>
+            </div>
+
+            <h6>@Model.Address.Name</h6>
+            <address>
+                @Model.Address.Street <br />
+                @Model.Address.City, @Model.Address.Region, @Model.Address.PostCode <br />
+                @Model.Address.Country
+            </address>            
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary mt-2 mb-2" value="Place order" />
+</form>

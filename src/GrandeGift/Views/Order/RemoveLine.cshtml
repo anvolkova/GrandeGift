@@ -1,0 +1,17 @@
+﻿@model OrderRemoveLineViewModel
+
+<form class="form-signin" asp-controller="Order" asp-action="RemoveLine" method="post">
+    <h4 class="form-signin-heading">Are you sure you want delete this hamper?</h4>
+
+    <div>
+        <input asp-for="OrderLineId" hidden />
+    </div>
+
+    <div class="form-group">
+        <input asp-for="HamperName" class="form-control" readonly>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-block btn-primary mb-3" value="Delete" />
+    </div>
+
+</form>

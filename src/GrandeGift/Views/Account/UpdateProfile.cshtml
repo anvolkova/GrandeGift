@@ -1,0 +1,41 @@
+﻿@model AccountUpdateProfileViewModel
+
+<form class="form-signin" asp-controller="Account" asp-action="UpdateProfile" method="post">
+    <h4 class="form-signin-heading">Your Profile</h4>
+
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <input asp-for="ProfileId" hidden />
+        <span asp-validation-for="ProfileId"></span>
+    </div>
+
+    <div class="form-group">
+        <label>First name </label>
+        <input asp-for="FirstName" type="text" class="form-control" placeholder="First name">
+        <span asp-validation-for="FirstName"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Last name </label>
+        <input asp-for="LastName" type="text" class="form-control" placeholder="Last name">
+        <span asp-validation-for="LastName"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email address </label>
+        <input asp-for="Email" type="text" class="form-control" placeholder="name@example.com">
+        <span asp-validation-for="Email"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Phone number </label>
+        <input asp-for="Phone" class="form-control" placeholder="0123456789">
+        <span asp-validation-for="Phone"></span>
+    </div>
+
+    <div>
+        <input type="submit" class="btn btn-block btn-primary mb-4" value="Save changes" />
+    </div>
+
+</form>

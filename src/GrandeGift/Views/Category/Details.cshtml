@@ -1,0 +1,64 @@
+﻿@model CategoryDetailsViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 mt-3 mb-3">
+            <h4>@Model.Name</h4>
+        </div>
+        <div class="col-md-5 mt-3 mb-3">
+            <form asp-controller="Category" asp-action="Details" method="get">
+                <div class="input-group-sm">
+                    <span asp-for="MinPrice">Min Price</span>
+                    <input class="form-control-sm" style="width:10ch;" type="text" id="MinPrice" name="MinPrice" value="">
+                    <span asp-for="MaxPrice">Max Price</span>
+                    <input class="form-control-sm" style="width:10ch;" type="text" id="MaxPrice" name="MaxPrice" value="">
+                    <input type="submit" class="btn btn-lg btn-primary btn-sm mb-1" value="Search" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p>@Model.Details</p>
+</div>
+
+<div class="container mt-3 mb-2">
+    <p><b>@Model.Total </b>Products Found</p>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="mt-2">
+            @Html.ActionLink("Add new hamper", "Create", "Hamper",
+                null, new Dictionary<string, object> { { "class", "btn btn-primary" } })
+        </div>
+    }
+</div>
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Hampers)
+        {
+            <div class="col-sm-4 mt-2">
+                <div class="card">
+                    <a href="/Hamper/Details/@item.HamperId">
+                        <img src="~/uploads/@item.Picture" class="card-img-top img-fluid" style="width:100%" alt="@item.Picture">
+                    </a>
+                    <div class="card-body">
+                        <h6 class="card-title">@Html.ActionLink(item.Name, "Details", "Hamper", new { id = item.HamperId })</h6>
+                        <span class="card-text"><b>&#x24;@item.Price</b></span>
+                        <span class="btn btn-light float-sm-right mt-sm-1">@Html.ActionLink("Buy", "Cart", "Order", new { hamperId = item.HamperId })</span>
+                        <span class="btn btn-light float-sm-right mt-sm-1 mr-1">@Html.ActionLink("Info", "Details", "Hamper", new { id = item.HamperId })</span>
+                    </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="mb-2">@Html.ActionLink("Update", "Update", "Hamper", new { id = item.HamperId }, 
+                            new Dictionary<string, object> { { "class", "btn btn-primary" } })</div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
