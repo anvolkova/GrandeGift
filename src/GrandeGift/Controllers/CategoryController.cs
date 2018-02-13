@@ -38,6 +38,7 @@ namespace GrandeGift.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryCreateViewModel vm, IFormFile file)
         {
             if (ModelState.IsValid)
@@ -122,6 +123,7 @@ namespace GrandeGift.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(CategoryUpdateViewModel vm, IFormFile file)
         {
             if (ModelState.IsValid)

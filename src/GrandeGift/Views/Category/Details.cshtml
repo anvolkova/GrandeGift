@@ -48,7 +48,10 @@
                     <div class="card-body">
                         <h6 class="card-title">@Html.ActionLink(item.Name, "Details", "Hamper", new { id = item.HamperId })</h6>
                         <span class="card-text"><b>&#x24;@item.Price</b></span>
+                        @if (!User.IsInRole("Admin"))
+                        {
                         <span class="btn btn-light float-sm-right mt-sm-1">@Html.ActionLink("Buy", "Cart", "Order", new { hamperId = item.HamperId })</span>
+                        }
                         <span class="btn btn-light float-sm-right mt-sm-1 mr-1">@Html.ActionLink("Info", "Details", "Hamper", new { id = item.HamperId })</span>
                     </div>
 

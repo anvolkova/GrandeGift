@@ -1,6 +1,6 @@
 ﻿@model AddressRemoveViewModel
 
-<form class="form-signin" asp-controller="Address" asp-action="Remove" method="post">
+<form class="form-signin" asp-controller="Address" asp-action="Remove" method="post" asp-anti-forgery="true">
     <h4 class="form-signin-heading">Are you sure you want delete this address?</h4>
     
     <div>

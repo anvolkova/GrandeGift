@@ -1,6 +1,6 @@
 ﻿@model OrderRemoveLineViewModel
 
-<form class="form-signin" asp-controller="Order" asp-action="RemoveLine" method="post">
+<form class="form-signin" asp-controller="Order" asp-action="RemoveLine" method="post" asp-anti-forgery="true">
     <h4 class="form-signin-heading">Are you sure you want delete this hamper?</h4>
 
     <div>

@@ -22,8 +22,12 @@
                 }
             </ul>
         </div>
-        @Html.ActionLink("Buy", "Cart", "Order", new { hamperId = Model.HamperId },
+        @if (!User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Buy", "Cart", "Order", new { hamperId = Model.HamperId },
             new Dictionary<string, object> { { "class", "btn btn-primary mb-2" } })
+
+        }
     </div>
 </div>
 

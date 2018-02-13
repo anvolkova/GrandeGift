@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GrandeGift.Models;
 using GrandeGift.Services;
@@ -56,9 +55,13 @@ namespace GrandeGift.Controllers
 
         //Cart
         [HttpGet]
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Customer, Admin")]
         public IActionResult Cart(int hamperId)
         {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             Order orderCart = GetOrCreateCart();
 
             Hamper hamper = _hamperDataService.GetSingle(h => h.HamperId == hamperId);
@@ -89,6 +92,7 @@ namespace GrandeGift.Controllers
         //If we want to change items quantity
         [HttpPost]
         [Authorize(Roles = "Customer")]
+        [ValidateAntiForgeryToken]
         public IActionResult Cart()
         {
             Order orderCart = GetOrCreateCart();
@@ -150,6 +154,7 @@ namespace GrandeGift.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Customer")]
+        [ValidateAntiForgeryToken]
         public IActionResult Checkout(OrderCheckoutViewModel vm)
         {
             Order orderCart = GetOrCreateCart();
@@ -220,6 +225,7 @@ namespace GrandeGift.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Customer")]
+        [ValidateAntiForgeryToken]
         public IActionResult RemoveLine(OrderRemoveLineViewModel vm)
         {
             OrderLine ordline = _orderlineDataService.GetSingle(a => a.OrderLineId == vm.OrderLineId);

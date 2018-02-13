@@ -1,6 +1,6 @@
 ﻿@model AddressCreateViewModel
 
-<form class="form-signin" asp-controller="Address" asp-action="Create" method="post">
+<form class="form-signin" asp-controller="Address" asp-action="Create" method="post" asp-anti-forgery="true">
     <h4 class="form-signin-heading">Add delivery address</h4>
 
     <div asp-validation-summary="ModelOnly"></div>

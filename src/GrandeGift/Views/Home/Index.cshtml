@@ -11,7 +11,7 @@
     <div class="row">
         @foreach (var item in Model.Categories)
         {
-            <div class="col-sm-4 mt-2">
+            <div class="col-md-4 mt-2">
                 <div class="card">
                     <div class="card-header text-center">
                         <h6 class="card-title">@Html.ActionLink(item.Name, "Details", "Category", new { id = item.CategoryId })</h6>

@@ -4,7 +4,7 @@
 
 @if (Model.OrderLines.Any())
 {
-    <form asp-controller="Order" asp-action="Cart" method="post">
+    <form asp-controller="Order" asp-action="Cart" method="post" asp-anti-forgery="true">
 
         <table class="mt-2 mb-2 full-width">
             <tr>

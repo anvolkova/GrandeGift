@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-//...
 using GrandeGift.Services;
 using GrandeGift.Models;
 using GrandeGift.ViewModels;
@@ -40,6 +36,7 @@ namespace GrandeGift.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(HamperCreateViewModel vm, IFormFile file)
         {
             int theCategoryId = int.Parse(TempData["catId"].ToString());
@@ -112,6 +109,7 @@ namespace GrandeGift.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(HamperUpdateViewModel vm, IFormFile file)
         {
             int theCategoryId = int.Parse(TempData["catId"].ToString());
