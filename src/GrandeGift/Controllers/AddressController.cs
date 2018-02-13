@@ -25,6 +25,7 @@ namespace GrandeGift.Controllers
         }
         [HttpPost]
         [Authorize(Roles ="Customer")]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(AddressCreateViewModel vm)
         {
             if (ModelState.IsValid)
@@ -65,6 +66,7 @@ namespace GrandeGift.Controllers
         }
         [HttpPost]
         [Authorize(Roles ="Customer")]
+        [ValidateAntiForgeryToken]
         public IActionResult Update(AddressUpdateViewModel vm)
         {
             if (ModelState.IsValid)
@@ -114,6 +116,7 @@ namespace GrandeGift.Controllers
 
         [HttpPost]
         [Authorize(Roles ="Customer")]
+        [ValidateAntiForgeryToken]
         public IActionResult Remove(AddressRemoveViewModel vm)
         {
             Address adrs = _addressDataService.GetSingle(a => a.AddressId == vm.AddressId);

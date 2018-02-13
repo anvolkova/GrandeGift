@@ -1,6 +1,6 @@
 ﻿@model AccountUpdateProfileViewModel
 
-<form class="form-signin" asp-controller="Account" asp-action="UpdateProfile" method="post">
+<form class="form-signin" asp-controller="Account" asp-action="UpdateProfile" method="post" asp-anti-forgery="true">
     <h4 class="form-signin-heading">Your Profile</h4>
 
     <div asp-validation-summary="ModelOnly"></div>

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-//...
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GrandeGift.Services;
 using GrandeGift.Models;
@@ -57,9 +52,10 @@ namespace GrandeGift
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseExceptionHandler("/Home/Error"); // put this for testing purpose
+                app.UseBrowserLink();
+                //app.UseExceptionHandler("/Home/Error");
             }
-            //if environment is not develodpment - user environment, we should show some general message (not dev.message) 
+            //if environment is not in development - user environment, we should show some general message (not dev.message) 
             else
             {
                 app.UseExceptionHandler("/Home/Error");

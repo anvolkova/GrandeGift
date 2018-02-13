@@ -12,10 +12,7 @@
     </tr>
     @foreach (var item in Model.OrderList)
     {
-        <tr>
-            <td>
-                @item.OrderId
-            </td>
+        <tr>           
             <td>
                 @item.OrderDate.ToString("dd/MM/yyyy")
             </td>

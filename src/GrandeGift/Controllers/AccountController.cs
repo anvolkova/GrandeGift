@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-//...
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -38,6 +34,7 @@ namespace GrandeGift.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(AccountRegisterViewModel vm)
         {
             if (ModelState.IsValid)
@@ -74,6 +71,7 @@ namespace GrandeGift.Controllers
             return View(vm);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AccountLoginViewModel vm)
         {
             if (ModelState.IsValid)
@@ -123,6 +121,7 @@ namespace GrandeGift.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Customer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateProfile(AccountUpdateProfileViewModel vm)
         {
             if (ModelState.IsValid)
